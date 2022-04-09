@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class LoginFragment extends Fragment {
          Button loginBtn = view.findViewById(R.id.LoginBtn);
         getActivity().getWindow().setFormat(PixelFormat.UNKNOWN);
 
-        Uri uri = Uri.parse("android.resource://com.sachi.airracing.ui/"+R.raw.video);
+        Uri uri = Uri.parse("android.resource://com.sachi.airracing/"+R.raw.video);
         videoView.setVideoURI(uri);
         videoView.requestFocus();
         videoView.start();
