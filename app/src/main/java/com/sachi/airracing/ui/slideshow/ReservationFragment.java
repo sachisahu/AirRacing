@@ -18,7 +18,7 @@ import com.sachi.airracing.ui.Adapters.RaceRowAdapter;
 
 import java.util.List;
 
-public class SlideshowFragment extends Fragment {
+public class ReservationFragment extends Fragment {
 
     private FragmentSlideshowBinding binding;
     Database db;
