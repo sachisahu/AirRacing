@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TktBooking">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10sp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/dateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:src="@drawable/list_view_icon"/>
+        <TextView
+            android:id="@+id/raceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFEB3B"
+            android:textSize="30sp"
+            android:text="Sachi"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Qualifying"/>
+    <TextView
+        android:id="@+id/racedateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Date Time"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="Seat type:"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+    <Spinner
+        android:id="@+id/spinnerSeatType"
+        android:layout_width="match_parent"
+        android:layout_margin="10sp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="The Number Of Seats:"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+    <EditText
+        android:id="@+id/noOfSeats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnReserve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:backgroundTint="#FFC107"
+        android:text="Reserve"/>
+
+
+
+
+
+</LinearLayout>
