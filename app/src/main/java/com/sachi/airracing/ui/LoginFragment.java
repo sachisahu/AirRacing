@@ -1,5 +1,6 @@
 package com.sachi.airracing.ui;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.net.Uri;
@@ -24,9 +25,11 @@ import okhttp3.internal.Util;
 public class LoginFragment extends Fragment {
 
     Sp sp = new Sp();
+    Activity activity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = getActivity();
 
     }
 
@@ -48,7 +51,11 @@ public class LoginFragment extends Fragment {
 
         loginBtn.setOnClickListener(i->{
             if(phone.getText().toString().length()>9 && phone.getText().toString().length()<12 && pass.getText().toString().length()>4){
-                Sp.SaveShared(getActivity(),"login","login","Logout");
+                Sp.SaveShared(activity,"login","loginPhone",""+phone);
+                Sp.SaveShared(activity,"login","loginPass",""+pass);
+                Sp.getShared(activity,"login","loginPhone");
+
+
             }
             else {
                 Toast.makeText(getActivity(), "Enter Correct Phone And password should be more than 4 dgts", Toast.LENGTH_SHORT).show();

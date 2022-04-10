@@ -3,6 +3,7 @@ package com.sachi.airracing;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.sachi.airracing.Util.Database;
 import com.sachi.airracing.Util.Sp;
 import com.sachi.airracing.databinding.ActivityMainBinding;
 import com.sachi.airracing.ui.LoginFragment;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     ActionBarDrawerToggle toggle;
+    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +35,34 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        db = new Database(this);
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
-        Menu menu = binding.navView.getMenu();
-        MenuItem menuItem = menu.findItem(R.id.nav_Login);
-        menuItem.setTitle(Sp.getShared(this,"login","login"));
+
 
         toggle = new ActionBarDrawerToggle(this,binding.drawerLayout,binding.appBarMain.toolbar,R.string.Open,R.string.Close);
         toggle.syncState();
 
+        String sharedP = Sp.getShared(this,"login","loginPhone");
+        if(sharedP.length()>0){
+            Menu menu1 = binding.navView.getMenu();
+            MenuItem reservation = menu1.findItem(R.id.nav_Reservation);
+            reservation.setVisible(true);
+            MenuItem menuItemLogout = menu1.findItem(R.id.nav_logout);
+            menuItemLogout.setVisible(true);
+            MenuItem menuItemLogin = menu1.findItem(R.id.nav_Login);
+            menuItemLogin.setVisible(false);
+            MenuItem menuItemSignup = menu1.findItem(R.id.nav_signup);
+            menuItemSignup.setVisible(false);
+        }else {
+
+            Menu menu1 = binding.navView.getMenu();
+            MenuItem reservation = menu1.findItem(R.id.nav_Reservation);
+            reservation.setVisible(false);
+            MenuItem menuItemLogout = menu1.findItem(R.id.nav_logout);
+            menuItemLogout.setVisible(false);
+        }
         callFragment(new HomeFragment());
         binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -52,15 +73,36 @@ public class MainActivity extends AppCompatActivity {
                         binding.drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_Login:
+                    case R.id.nav_signup:
                         callFragment(new LoginFragment());
                         binding.drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_Reservation:
                         callFragment(new ReservationFragment());
                         binding.drawerLayout.closeDrawers();
+                        db.featch();
                         break;
+                    case R.id.nav_logout:
+                        logout();
+                        binding.drawerLayout.closeDrawers();
+                        break;
+
                 }
                 return false;
+            }
+
+            private void logout() {
+                Sp.clearSp(MainActivity.this,"login");
+                Menu menu1 = binding.navView.getMenu();
+                MenuItem menuItemLogin = menu1.findItem(R.id.nav_Login);
+                menuItemLogin.setVisible(true);
+                MenuItem menuItemSignup = menu1.findItem(R.id.nav_signup);
+                menuItemSignup.setVisible(true);
+                MenuItem reservation = menu1.findItem(R.id.nav_Reservation);
+                reservation.setVisible(false);
+                MenuItem menuItemLogout = menu1.findItem(R.id.nav_logout);
+                menuItemLogout.setVisible(false);
+
             }
 
 

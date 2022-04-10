@@ -19,8 +19,6 @@ import com.sachi.airracing.ui.Adapters.RaceRowAdapter;
 import java.util.List;
 
 public class ReservationFragment extends Fragment {
-
-    private FragmentSlideshowBinding binding;
     Database db;
         ListView listView;
     public View onCreateView(@NonNull LayoutInflater inflater,

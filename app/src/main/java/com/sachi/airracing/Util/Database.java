@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -43,12 +44,12 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from airData",null);
         cursor.moveToFirst();
-        while (cursor.isAfterLast()){
+        while (!cursor.isAfterLast()){
             String RaceName = cursor.getString(cursor.getColumnIndexOrThrow("Racename"));
             String datetime = cursor.getString(cursor.getColumnIndexOrThrow("dateTime"));
             String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
-            cursor.moveToNext();
             list.add(new RaceDataClass(RaceName,datetime,type));
+            cursor.moveToNext();
 
         }
     }
